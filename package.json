@@ -1,0 +1,28 @@
+{
+  "name": "mb-cosme-news",
+  "version": "0.1.0",
+  "private": true,
+  "description": "化粧品ニュースを毎営業日朝に Slack へ配信する bot（メビウス製薬の商品企画・マーケ・PR 向け）",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "dev": "DRY_RUN=true tsx src/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.30.1",
+    "@slack/web-api": "^7.7.0",
+    "cheerio": "^1.0.0",
+    "rss-parser": "^3.13.0",
+    "undici": "^7.0.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.10",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

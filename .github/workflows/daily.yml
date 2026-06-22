@@ -1,0 +1,68 @@
+name: Daily cosme news digest
+
+on:
+  schedule:
+    # 平日 09:00 JST = 平日 00:00 UTC
+    - cron: "0 0 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (true = Slack に投稿せず stdout のみ)"
+        type: boolean
+        required: false
+        default: false
+
+concurrency:
+  group: daily-${{ github.workflow }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Type check
+        run: pnpm typecheck
+
+      - name: Run digest
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_CHANNEL_ID: ${{ vars.SLACK_CHANNEL_ID }}
+          DRY_RUN: ${{ inputs.dry_run || vars.DRY_RUN || 'false' }}
+        run: pnpm start
+
+      - name: Commit updated seen.json
+        if: ${{ (inputs.dry_run || vars.DRY_RUN || 'false') != 'true' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- state/seen.json; then
+            echo "no changes to state/seen.json"
+          else
+            git add state/seen.json
+            git commit -m "chore(state): update seen.json after $(date -u +%Y-%m-%dT%H:%MZ) run"
+            git push
+          fi
