@@ -9,7 +9,8 @@
   },
   "scripts": {
     "start": "tsx src/index.ts",
-    "dev": "DRY_RUN=true tsx src/index.ts",
+    "start:local": "tsx --env-file=.env src/index.ts",
+    "dev": "DRY_RUN=true tsx --env-file=.env src/index.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

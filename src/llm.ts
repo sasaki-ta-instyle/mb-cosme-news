@@ -14,8 +14,8 @@ const ScoreItemSchema = z.object({
 const ScoreArraySchema = z.array(ScoreItemSchema);
 
 const MODEL = "claude-haiku-4-5-20251001";
-const MAX_TOKENS = 4000;
-const BATCH_SIZE = 30; // 1 リクエスト 30 件まで
+const MAX_TOKENS = 8000;
+const BATCH_SIZE = 15; // 1 リクエスト 15 件まで（JSON 切れを防ぐ）
 
 export async function scoreAndSummarize(
   articles: NormalizedArticle[],
@@ -48,7 +48,19 @@ export async function scoreAndSummarize(
       .map((c) => c.text)
       .join("\n");
 
-    const parsed = parseJsonArray(text);
+    let parsed: unknown;
+    try {
+      parsed = parseJsonArray(text);
+    } catch (err) {
+      console.error("[llm] parse error:", (err as Error).message);
+      console.error("[llm] raw output (first 1000 chars):", text.slice(0, 1000));
+      console.error("[llm] raw output (last 500 chars):", text.slice(-500));
+      console.error(
+        `[llm] stop_reason: ${res.stop_reason}, usage:`,
+        res.usage,
+      );
+      continue;
+    }
     const validated = ScoreArraySchema.safeParse(parsed);
     if (!validated.success) {
       console.error("[llm] JSON validation failed:", validated.error.message);

@@ -20,12 +20,32 @@ export async function fetchPrtimes(): Promise<RawArticle[]> {
     if (seen.has(url)) return;
     seen.add(url);
 
-    // タイトルは a 直下、または周辺の h タグ
-    let title = $a.attr("title")?.trim() || $a.text().trim();
+    // タイトルは a 内の h タグ → title 属性 → 周辺の h タグ → a 内テキストから抽出
+    let title =
+      $a.find("h2,h3,h4").first().text().trim() ||
+      $a.attr("title")?.trim() ||
+      $a.closest("article").find("h2,h3").first().text().trim() ||
+      $a.parent().find("h2,h3").first().text().trim() ||
+      "";
+
+    // フォールバック: a 内の全テキストから「日付」「時刻」「社名」「分前」を除いた最長セグメント
     if (!title || title.length < 6) {
+      const segments = $a
+        .text()
+        .split(/[\n\r]+|\s{3,}/)
+        .map((s) => s.trim())
+        .filter((s) => s.length >= 6);
+      const candidates = segments.filter(
+        (s) =>
+          !/^\d{4}年/.test(s) &&
+          !/(分前|時間前|日前)$/.test(s) &&
+          !/^(株式会社|有限会社|合同会社|一般社団法人)/.test(s) &&
+          !/(株式会社|有限会社|合同会社)$/.test(s),
+      );
       title =
-        $a.closest("article").find("h2,h3").first().text().trim() ||
-        $a.parent().find("h2,h3").first().text().trim();
+        candidates.sort((a, b) => b.length - a.length)[0] ||
+        segments[0] ||
+        "";
     }
     if (!title || title.length < 6) return;
 

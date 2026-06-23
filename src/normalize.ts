@@ -58,11 +58,18 @@ export function stripHtml(html: string): string {
     .trim();
 }
 
+export function normalizeTitle(raw: string): string {
+  return raw
+    .replace(/\s+/g, " ")
+    .replace(/^\d+\s+/, "") // PR TIMES などのリスト番号を除去
+    .trim();
+}
+
 export function normalize(raw: RawArticle): NormalizedArticle {
   const canonical = canonicalizeUrl(raw.url);
   return {
     ...raw,
-    title: raw.title.trim(),
+    title: normalizeTitle(raw.title),
     description: stripHtml(raw.description).slice(0, 500),
     canonicalUrl: canonical,
     id: hashUrl(canonical),
