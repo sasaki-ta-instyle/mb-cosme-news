@@ -2,7 +2,10 @@
 
 ## このプロジェクトは何か
 
-化粧品ニュースを毎営業日朝に Slack へ配信する bot。メビウス製薬の商品企画・開発・マーケ・PR チーム向け。GitHub Actions cron で平日 09:00 JST に起動し、WWD JAPAN / FASHIONSNAP / PR TIMES / @cosme から記事を集めて、メビウス文脈で関連度の高いものを 5〜8 件、Slack の 1 投稿にまとめて流す。
+メビウス製薬の商品企画・開発・マーケ・PR チーム向けに、Slack 上で化粧品業界の情報サポートをする統合 bot。2 つの機能を持つ:
+
+1. **朝のダイジェスト配信（v1 / cron）**: 平日 09:00 JST に WWD JAPAN / FASHIONSNAP / PR TIMES / @cosme から記事を集め、メビウス文脈で関連度の高いものを 5〜8 件、Slack の 1 投稿にまとめて流す（GitHub Actions schedule）
+2. **質問応答 bot「シロコ」（v2 / 常駐）**: `@シロコ` メンション or DM に対して、shiroco skill 由来の業界知識 + Web 検索で回答（ConoHa PM2 常駐 / Slack Socket Mode）
 
 ## 重要な事業文脈（Claude API への system prompt にも反映している）
 
@@ -15,15 +18,27 @@
 
 ## 使うとき
 
-- ローカル動作確認: `DRY_RUN=true pnpm start`
+### ダイジェスト配信 (v1)
+- ローカル動作確認: `DRY_RUN=true pnpm start:local`
 - 本番 cron は GitHub Actions に委譲。手動実行は `gh workflow run daily.yml --ref main`
+
+### 質問応答 bot (v2)
+- ローカル動作確認: `pnpm bot:local`（`.env` に `SLACK_BOT_TOKEN` / `SLACK_APP_TOKEN` / `ANTHROPIC_API_KEY` が必要）
+- 本番は ConoHa 上の PM2 で常駐。`scripts/deploy-bot.sh` または `gh workflow run deploy-bot.yml --ref main`
+- Slack 側設定: Socket Mode + `xapp-...` の App-Level Token + `app_mention` / `message.im` の Event Subscriptions
 
 ## 編集時の注意
 
+### ダイジェスト配信
 - 出力フォーマット（Slack Block Kit）を変えるときは、必ず DRY_RUN で stdout プレビューを目視確認してから本番に出す
 - `config/keywords.ts` のキーワードは粗いフィルタ。LLM 側で最終判定するので、ここで網羅性を上げすぎてもコストが増えるだけ
 - `config/prompts.ts` の system prompt はメビウスの事業文脈を圧縮した素材になっている。変えるときは shiroco skill との整合を確認
 - `state/seen.json` は cron 実行後に自動 commit-back される。手動編集しない
+
+### 質問応答 bot
+- `src/bot/persona.ts` の system prompt はシロコの persona。shiroco skill の素材から圧縮した版で、薬機法のグレーゾーン解釈・医療効果断定・未公開推測を断る指示を含む。変更時はこの抑止ガイドを残す
+- `state/threads/*.json`（thread 単位の会話履歴）は git に絶対上げない（`.gitignore` 済み）。**PII を含む**
+- Bot Token のスコープを変えたら **必ず Reinstall** → 新 `xoxb-...` を GitHub Secret に再登録
 
 ## このプロジェクトに関連する Workspace ルール（CLAUDE.md 上位）
 

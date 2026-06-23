@@ -11,10 +11,13 @@
     "start": "tsx src/index.ts",
     "start:local": "tsx --env-file=.env src/index.ts",
     "dev": "DRY_RUN=true tsx --env-file=.env src/index.ts",
+    "bot": "tsx src/bot.ts",
+    "bot:local": "tsx --env-file=.env src/bot.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.30.1",
+    "@slack/bolt": "^4.1.1",
     "@slack/web-api": "^7.7.0",
     "cheerio": "^1.0.0",
     "rss-parser": "^3.13.0",
