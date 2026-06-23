@@ -48,7 +48,7 @@ export function buildSlackBlocks(
     const lines = [
       `*${idx}. [${a.sourceName}] ${escapeSlack(a.title)}*`,
       escapeSlack(a.summary),
-      `💡 メビウス: ${escapeSlack(a.whyForMebius)}`,
+      `💡 ${escapeSlack(a.whyForMebius)}`,
       `🔗 <${a.canonicalUrl}|記事を開く>`,
     ];
     const mrkdwn = lines.join("\n");
@@ -61,7 +61,7 @@ export function buildSlackBlocks(
     plainText +=
       `${idx}. [${a.sourceName}] ${a.title}\n` +
       `   ${a.summary}\n` +
-      `   メビウス: ${a.whyForMebius}\n` +
+      `   💡 ${a.whyForMebius}\n` +
       `   ${a.canonicalUrl}\n\n`;
   });
 
