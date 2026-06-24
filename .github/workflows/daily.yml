@@ -2,8 +2,9 @@ name: Daily cosme news digest
 
 on:
   schedule:
-    # 平日 09:30 JST = 平日 00:30 UTC（UTC 00:00 帯は混雑遅延が多いので 30 分ずらす）
-    - cron: "30 0 * * 1-5"
+    # 平日 09:50 JST = 平日 00:50 UTC（UTC 00:00 帯の混雑を避ける）
+    # 祝日 / 年末年始は src/calendar.ts の shouldSkipToday() で配信前にスキップ
+    - cron: "50 0 * * 1-5"
   workflow_dispatch:
     inputs:
       dry_run:

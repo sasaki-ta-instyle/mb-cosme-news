@@ -7,14 +7,25 @@ import { removeSeen, mergeCrossSource } from "./dedupe.ts";
 import { scoreAndSummarize } from "./llm.ts";
 import { selectTopArticles } from "./select.ts";
 import { buildSlackBlocks, postToSlack } from "./slack.ts";
+import { shouldSkipToday } from "./calendar.ts";
 import type { NormalizedArticle } from "./types.ts";
 
 const DRY_RUN = (process.env.DRY_RUN ?? "false").toLowerCase() === "true";
+const FORCE_RUN = (process.env.FORCE_RUN ?? "false").toLowerCase() === "true";
 
 async function main() {
   console.log("=== mb-cosme-news ===");
   console.log(`mode: ${DRY_RUN ? "DRY_RUN" : "LIVE"}`);
   console.log(`start: ${new Date().toISOString()}`);
+
+  // 祝日 / 年末年始は配信スキップ（DRY_RUN や FORCE_RUN ではスキップしない）
+  if (!DRY_RUN && !FORCE_RUN) {
+    const skip = shouldSkipToday();
+    if (skip.skip) {
+      console.log(`[skip] ${skip.reason}. exiting without fetch.`);
+      return;
+    }
+  }
 
   // 1. fetch
   const enabledIds = SOURCES.filter((s) => s.enabled).map((s) => s.id);

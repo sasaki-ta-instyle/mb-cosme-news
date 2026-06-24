@@ -4,7 +4,7 @@
 
 メビウス製薬の商品企画・開発・マーケ・PR チーム向けに、Slack 上で化粧品業界の情報サポートをする統合 bot。2 つの機能を持つ:
 
-1. **朝のダイジェスト配信（v1 / cron）**: 平日 09:30 JST に WWD JAPAN / FASHIONSNAP / PR TIMES / @cosme から記事を集め、メビウス文脈で関連度の高いものを 5〜8 件、Slack の 1 投稿にまとめて流す（GitHub Actions schedule）
+1. **朝のダイジェスト配信（v1 / cron）**: 平日 09:50 JST に WWD JAPAN / FASHIONSNAP / PR TIMES / @cosme から記事を集め、メビウス文脈で関連度の高いものを 5〜8 件、Slack の 1 投稿にまとめて流す（GitHub Actions schedule）。土日 / 日本の祝日 / 年末年始（12/29〜1/3）は `src/calendar.ts` の `shouldSkipToday()` で自動スキップ。手動で祝日でも配信したい時は `FORCE_RUN=true pnpm start:local`
 2. **質問応答 bot「シロコ」（v2 / 常駐）**: `@シロコ` メンション or DM に対して、shiroco skill 由来の業界知識 + Web 検索で回答（ConoHa PM2 常駐 / Slack Socket Mode）
 
 ## 重要な事業文脈（Claude API への system prompt にも反映している）
