@@ -39,8 +39,12 @@ export const SOURCES: SourceConfig[] = [
   },
 ];
 
+// WWD JAPAN など Cloudflare 系で素の bot UA を弾くサイトがあるため、
+// Chrome を偽装しつつ From: ヘッダで連絡先を明示する（RFC 9110）。
 export const USER_AGENT =
-  "mb-cosme-news/1.0 (+contact:sasaki-ta@instyle.group)";
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36";
+
+export const FROM_HEADER = "sasaki-ta@instyle.group";
 
 export const FETCH_TIMEOUT_MS = 15_000;
 

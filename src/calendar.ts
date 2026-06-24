@@ -1,7 +1,7 @@
 // 日本の営業日判定（土日 / 祝日 / 年末年始の除外）。
 // cron は平日のみ起動する（`* * * 1-5`）が、平日に祝日が当たる場合 + 年末年始は別途スキップする。
 
-import { isHoliday } from "@holiday-jp/holiday_jp";
+import holiday_jp from "@holiday-jp/holiday_jp";
 
 // 12/29 〜 1/3 を年末年始扱いで除外
 function isYearEndOrNewYear(d: Date): boolean {
@@ -32,7 +32,7 @@ export function shouldSkipToday(now: Date = new Date()): SkipResult {
   }
 
   // 日本の祝日
-  if (isHoliday(tokyo)) {
+  if (holiday_jp.isHoliday(tokyo)) {
     return { skip: true, reason: `Japanese national holiday (${ymd})` };
   }
 

@@ -1,5 +1,9 @@
 import { request } from "undici";
-import { FETCH_TIMEOUT_MS, USER_AGENT } from "../config/sources.ts";
+import {
+  FETCH_TIMEOUT_MS,
+  USER_AGENT,
+  FROM_HEADER,
+} from "../config/sources.ts";
 import { isAllowed } from "./robots.ts";
 
 export async function fetchText(url: string): Promise<string> {
@@ -14,6 +18,7 @@ export async function fetchText(url: string): Promise<string> {
         method: "GET",
         headers: {
           "user-agent": USER_AGENT,
+          from: FROM_HEADER,
           accept:
             "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
           "accept-language": "ja,en;q=0.8",
