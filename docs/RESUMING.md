@@ -36,7 +36,7 @@ gh workflow run manual.yml --ref main --repo sasaki-ta-instyle/mb-cosme-news -f 
 
 ## ハマりどころ
 
-- **cron が遅れる**: GitHub Actions の cron は混雑時に 30 分くらい遅延する。09:00 JST に来なくても 09:30 まで待つ
+- **cron が遅れる**: GitHub Actions の cron は混雑時に 30 分くらい遅延する。09:30 JST に来なくても 10:00 まで待つ
 - **`state/seen.json` のコミットが衝突する**: 手動実行と cron が重なると push 競合する可能性。`workflow.yml` 側で `permissions: contents: write` と `concurrency` を設定済み
 - **Slack 投稿が崩れる**: Block Kit の文字数制限（テキスト 3000 字、セクションあたり）。`src/slack.ts` は section ごとに分割する実装になっている
 - **WWD / PR TIMES / @cosme の HTML 構造が変わる**: スクレイパー（`src/sources/*.ts`）の CSS selector が壊れたら、各ソースのページを開いて DOM を見て直す。fallback として「0 件取れたら警告を stderr に出して継続」する設計

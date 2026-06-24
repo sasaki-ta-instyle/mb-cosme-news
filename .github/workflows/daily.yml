@@ -2,8 +2,8 @@ name: Daily cosme news digest
 
 on:
   schedule:
-    # 平日 09:00 JST = 平日 00:00 UTC
-    - cron: "0 0 * * 1-5"
+    # 平日 09:30 JST = 平日 00:30 UTC（UTC 00:00 帯は混雑遅延が多いので 30 分ずらす）
+    - cron: "30 0 * * 1-5"
   workflow_dispatch:
     inputs:
       dry_run:
