@@ -1,0 +1,39 @@
+name: Deploy bot to ConoHa
+
+on:
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-bot
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.CONOHA_SSH_KEY }}" > ~/.ssh/conoha_deploy
+          chmod 600 ~/.ssh/conoha_deploy
+          ssh-keyscan -p "${{ secrets.CONOHA_PORT }}" "${{ secrets.CONOHA_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+      - name: Run deploy-bot.sh on ConoHa
+        run: |
+          # 既存 deploy-bot.sh をリポから取りに行く形ではなく、最新を pull してから実行
+          ssh -i ~/.ssh/conoha_deploy -p "${{ secrets.CONOHA_PORT }}" \
+            "${{ secrets.CONOHA_USER }}@${{ secrets.CONOHA_HOST }}" \
+            'bash -s' <<'EOF'
+          set -euo pipefail
+          APP_DIR="/var/www/_workers/mb-cosme-news-bot"
+          REPO_URL="https://github.com/sasaki-ta-instyle/mb-cosme-news.git"
+          BRANCH="main"
+          if [ ! -d "$APP_DIR/.git" ]; then
+            mkdir -p "$(dirname "$APP_DIR")"
+            git clone --branch "$BRANCH" "$REPO_URL" "$APP_DIR"
+          fi
+          cd "$APP_DIR"
+          git fetch origin "$BRANCH"
+          git reset --hard "origin/$BRANCH"
+          bash scripts/deploy-bot.sh
+          EOF

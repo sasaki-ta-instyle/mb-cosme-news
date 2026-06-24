@@ -4,9 +4,10 @@
 module.exports = {
   apps: [
     {
-      name: "mb-cosme-news-bot",
-      script: "node_modules/tsx/dist/cli.mjs",
-      args: "src/bot.ts",
+      name: "_workers-mb-cosme-news-bot",
+      // ConoHa では node --env-file=<shared-env> tsx-cli src/bot.ts で env をロード
+      script: "node",
+      args: "--env-file=/var/www/_shared/apps/_workers-mb-cosme-news-bot.env node_modules/tsx/dist/cli.mjs src/bot.ts",
       cwd: ".",
       instances: 1,
       autorestart: true,

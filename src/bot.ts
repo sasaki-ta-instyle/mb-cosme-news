@@ -7,6 +7,7 @@ import type {
   SlackEventMiddlewareArgs,
 } from "@slack/bolt";
 import { answerQuestion } from "./bot/handler.ts";
+import { pruneOldThreads } from "./bot/thread-memory.ts";
 
 const botToken = process.env.SLACK_BOT_TOKEN;
 const appToken = process.env.SLACK_APP_TOKEN;
@@ -36,12 +37,13 @@ app.event<"app_mention">(
     logger,
   }: AllMiddlewareArgs & SlackEventMiddlewareArgs<"app_mention">) => {
     const userText = stripMention(event.text ?? "");
+    const threadTs = event.thread_ts ?? event.ts;
     logger.info(`[mention] user=${event.user} text=${userText.slice(0, 80)}`);
 
-    const reply = await answerQuestion({ userText });
+    const reply = await answerQuestion({ userText, threadTs });
     await client.chat.postMessage({
       channel: event.channel,
-      thread_ts: event.thread_ts ?? event.ts,
+      thread_ts: threadTs,
       text: reply,
       unfurl_links: false,
       unfurl_media: false,
@@ -64,9 +66,13 @@ app.event<"message">(
     if (!("text" in event) || !event.text) return;
 
     const userText = event.text.trim();
+    // DM の場合、thread_ts は通常無いが、有ればスレッド継続。なければ各メッセージは独立扱い
+    // ここでは DM 全体を 1 thread として扱うため、channel id を thread key にする
+    const threadTs =
+      ("thread_ts" in event && event.thread_ts) || `dm-${event.channel}`;
     logger.info(`[dm] user=${event.user} text=${userText.slice(0, 80)}`);
 
-    const reply = await answerQuestion({ userText });
+    const reply = await answerQuestion({ userText, threadTs });
     await client.chat.postMessage({
       channel: event.channel,
       text: reply,
@@ -82,6 +88,10 @@ function stripMention(text: string): string {
 }
 
 (async () => {
+  // 起動時に古い thread memory を掃除
+  const removed = await pruneOldThreads();
+  if (removed > 0) console.log(`[startup] pruned ${removed} old thread files`);
+
   await app.start();
   console.log("=== mb-cosme-news bot started (Socket Mode) ===");
 })();
