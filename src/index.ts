@@ -8,6 +8,7 @@ import { scoreAndSummarize } from "./llm.ts";
 import { selectTopArticles } from "./select.ts";
 import { buildSlackBlocks, postToSlack } from "./slack.ts";
 import { shouldSkipToday } from "./calendar.ts";
+import { appendTrends } from "./trends.ts";
 import type { NormalizedArticle } from "./types.ts";
 
 const DRY_RUN = (process.env.DRY_RUN ?? "false").toLowerCase() === "true";
@@ -84,6 +85,10 @@ async function main() {
     }
     await postToSlack(selected, channel, token);
     console.log("[slack] posted");
+
+    // shiroco skill が参照する「業界トレンド事例」ログを append (LIVE 時のみ)
+    await appendTrends(selected);
+    console.log("[trends] appended to state/trends/");
   }
 
   // 8. persist seen state (delivered のみ追加)

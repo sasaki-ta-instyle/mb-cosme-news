@@ -3,12 +3,16 @@ import { fetchWwd } from "./wwd.ts";
 import { fetchFashionsnap } from "./fashionsnap.ts";
 import { fetchPrtimes } from "./prtimes.ts";
 import { fetchCosme } from "./cosme.ts";
+import { fetchBiteki } from "./biteki.ts";
+import { fetchVoce } from "./voce.ts";
 
 const FETCHERS: Record<string, () => Promise<RawArticle[]>> = {
   wwd: fetchWwd,
   fashionsnap: fetchFashionsnap,
   prtimes: fetchPrtimes,
   cosme: fetchCosme,
+  biteki: fetchBiteki,
+  voce: fetchVoce,
 };
 
 export async function fetchAll(sourceIds: string[]): Promise<{

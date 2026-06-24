@@ -1,4 +1,4 @@
-export type SourceKind = "rss" | "scrape";
+export type SourceKind = "rss" | "scrape" | "sitemap";
 
 export interface SourceConfig {
   id: string;
@@ -35,6 +35,20 @@ export const SOURCES: SourceConfig[] = [
     name: "@cosme",
     kind: "scrape",
     url: "https://www.cosme.net/news/",
+    enabled: true,
+  },
+  {
+    id: "biteki",
+    name: "美的.com",
+    kind: "rss",
+    url: "https://www.biteki.com/feed",
+    enabled: true,
+  },
+  {
+    id: "voce",
+    name: "VOCE",
+    kind: "sitemap",
+    url: "https://i-voce.jp/sitemaps/sitemap_article.xml",
     enabled: true,
   },
 ];

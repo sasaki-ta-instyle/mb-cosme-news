@@ -55,15 +55,18 @@ jobs:
           DRY_RUN: ${{ inputs.dry_run || vars.DRY_RUN || 'false' }}
         run: pnpm start
 
-      - name: Commit updated seen.json
+      - name: Commit updated state (seen.json + trends/)
         if: ${{ (inputs.dry_run || vars.DRY_RUN || 'false') != 'true' }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet -- state/seen.json; then
-            echo "no changes to state/seen.json"
+          git add state/seen.json
+          if [ -d state/trends ]; then
+            git add state/trends
+          fi
+          if git diff --cached --quiet; then
+            echo "no state changes"
           else
-            git add state/seen.json
-            git commit -m "chore(state): update seen.json after $(date -u +%Y-%m-%dT%H:%MZ) run"
+            git commit -m "chore(state): update state after $(date -u +%Y-%m-%dT%H:%MZ) run"
             git push
           fi
