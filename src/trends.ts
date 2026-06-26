@@ -49,7 +49,7 @@ function buildMonthHeader(ym: string): string {
   return [
     `# 業界トレンド事例 ${ym}`,
     "",
-    "mb-cosme-news 朝のダイジェスト（平日 09:00 JST、最大 5 件）で最終選定された記事のログ。",
+    "mb-cosme-news 朝のダイジェスト（平日 09:30 JST、最大 5 件）で最終選定された記事のログ。",
     "各エントリは LLM がメビウス文脈で関連度高と判定し Slack 投稿に使われたもの。",
     "shiroco skill から「直近の業界トレンド事例」として参照する。",
     "",
