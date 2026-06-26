@@ -71,7 +71,7 @@ export function buildSlackBlocks(
       {
         type: "mrkdwn",
         text:
-          "ソース: WWD JAPAN / FASHIONSNAP / PR TIMES / @cosme / 美的 / VOCE  ·  毎営業日 09:05 JST",
+          "ソース: WWD JAPAN / FASHIONSNAP / PR TIMES / 美的 / VOCE  ·  毎営業日 09:05 JST",
       },
     ],
   });

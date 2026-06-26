@@ -35,7 +35,11 @@ export const SOURCES: SourceConfig[] = [
     name: "@cosme",
     kind: "scrape",
     url: "https://www.cosme.net/news/",
-    enabled: true,
+    // 2026-06-26: cosme.net/news/ がリストページ機能を失い、記事カード型リンクが
+    // HTML に残っていない (header/footer/category top のみ)。Shift_JIS 対応後も
+    // breakdown=1 で実質 dead source。LLM トークン無駄遣いになるため一旦 disable。
+    // 別途「@cosme のどの URL 群を見るのが正解か」を調査して再有効化する。
+    enabled: false,
   },
   {
     id: "biteki",

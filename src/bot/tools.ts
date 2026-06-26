@@ -12,7 +12,7 @@ export const CUSTOM_TOOLS = [
   {
     name: "read_trends_log",
     description:
-      "mb-cosme-news の朝のダイジェスト由来、メビウス文脈で関連度高と LLM が判定した直近の業界トレンド事例ログ（WWD JAPAN / FASHIONSNAP / PR TIMES / @cosme / 美的 / VOCE 由来、最大 5 件/日）を読み出す。商品企画・マーケトレンド・オファー設計・PR 施策・競合動向・直近の同業の動き等の質問でユーザーが具体的事例を求めているときに使う。1 回の呼び出しで指定月（または当月）の 1 ファイル分を返す。一次情報の代替ではなく、具体引用したい時は元 URL を web_search で当てに行く。",
+      "mb-cosme-news の朝のダイジェスト由来、メビウス文脈で関連度高と LLM が判定した直近の業界トレンド事例ログ（WWD JAPAN / FASHIONSNAP / PR TIMES / 美的 / VOCE 由来、最大 5 件/日）を読み出す。商品企画・マーケトレンド・オファー設計・PR 施策・競合動向・直近の同業の動き等の質問でユーザーが具体的事例を求めているときに使う。1 回の呼び出しで指定月（または当月）の 1 ファイル分を返す。一次情報の代替ではなく、具体引用したい時は元 URL を web_search で当てに行く。",
     input_schema: {
       type: "object" as const,
       properties: {
