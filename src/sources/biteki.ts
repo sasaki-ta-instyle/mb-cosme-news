@@ -27,7 +27,7 @@ export async function fetchBiteki(): Promise<RawArticle[]> {
 
     articles.push({
       source: "biteki",
-      sourceName: "美的.com",
+      sourceName: "美的",
       title,
       description: (item.contentSnippet ?? item.content ?? "").slice(0, 500),
       url,

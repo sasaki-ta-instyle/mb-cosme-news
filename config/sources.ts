@@ -39,7 +39,10 @@ export const SOURCES: SourceConfig[] = [
   },
   {
     id: "biteki",
-    name: "美的.com",
+    // Slack の mrkdwn 自動リンク化を避けるため、表示名は「.com」を含めない。
+    // IDN ドメイン「美的.com」は Slack が自動でリンク化して host を Punycode
+    // (xn--hxyt6q.com) に変換してしまうため。
+    name: "美的",
     kind: "rss",
     url: "https://www.biteki.com/feed",
     enabled: true,
