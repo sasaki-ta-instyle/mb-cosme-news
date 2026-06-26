@@ -1,13 +1,12 @@
 name: Daily cosme news digest
 
 on:
-  schedule:
-    # JST 09:05 = UTC 00:05。曜日は UTC でも同日扱いなので 1-5 (Mon-Fri) のまま。
-    # UTC 00:00 ジャストは GitHub Actions の混雑帯で公式に「避けろ」と書かれている
-    # （毎時 00 分はすべての cron が集中する）。5 分外すだけで遅延リスクを下げられる。
-    # 1 時間遅延しても JST 10 時台前半に収まる想定。
-    # 祝日 / 年末年始は src/calendar.ts の shouldSkipToday() (JST 基準) で配信前にスキップ。
-    - cron: "5 0 * * 1-5"
+  # 2026-06-26: GitHub Actions の schedule trigger は実測で 4 時間以上遅延した
+  # (JST 09:05 設定 → 実発火 JST 13:15)。実用性が無いため schedule を廃止し、
+  # ConoHa の crontab から scripts/trigger-daily.sh 経由で workflow_dispatch を
+  # 叩く運用に切り替えた。詳細は docs/external-cron.md。
+  # schedule:
+  #   - cron: "5 0 * * 1-5"
   workflow_dispatch:
     inputs:
       dry_run:
