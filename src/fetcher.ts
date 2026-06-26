@@ -29,7 +29,20 @@ export async function fetchText(url: string): Promise<string> {
       if (res.statusCode >= 400) {
         throw new Error(`HTTP ${res.statusCode} for ${url}`);
       }
-      return await res.body.text();
+      // Content-Type の charset を見て UTF-8 以外なら TextDecoder で変換。
+      // @cosme は Shift_JIS で配信されていて、素直に .text() すると文字化けする。
+      const buf = Buffer.from(await res.body.arrayBuffer());
+      const ct = res.headers["content-type"];
+      const ctStr = Array.isArray(ct) ? ct.join(",") : ct ?? "";
+      const m = /charset=\s*"?([^";\s]+)/i.exec(ctStr);
+      const rawCharset = (m?.[1] ?? "utf-8").toLowerCase();
+      const charset = rawCharset === "sjis" || rawCharset === "shift-jis" ? "shift_jis" : rawCharset;
+      try {
+        return new TextDecoder(charset, { fatal: false }).decode(buf);
+      } catch {
+        // 未知の encoding ラベルなら UTF-8 で読む（既存挙動にフォールバック）
+        return new TextDecoder("utf-8", { fatal: false }).decode(buf);
+      }
     } catch (err) {
       lastError = err;
       if (attempt === 0) {
