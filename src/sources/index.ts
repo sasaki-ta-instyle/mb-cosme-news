@@ -31,9 +31,11 @@ export async function fetchAll(sourceIds: string[]): Promise<{
     }),
   );
 
+  const counts: Record<string, number> = {};
   for (const r of results) {
     if (r.status === "fulfilled") {
       articles.push(...r.value.list);
+      counts[r.value.id] = r.value.list.length;
       if (r.value.list.length === 0) {
         errors.push({
           source: r.value.id,
@@ -47,6 +49,12 @@ export async function fetchAll(sourceIds: string[]): Promise<{
       });
     }
   }
+
+  // source 別件数を 1 行で出す（恒久ログ。壊れた source の特定が容易になる）
+  const breakdown = sourceIds
+    .map((id) => `${id}=${counts[id] ?? "ERR"}`)
+    .join(" ");
+  console.log(`[fetch][breakdown] ${breakdown}`);
 
   return { articles, errors };
 }
