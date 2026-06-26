@@ -1,8 +1,8 @@
 import type { ScoredArticle } from "./types.ts";
 
-const MIN_COUNT = 3;
-const TARGET_MIN = 5;
-const TARGET_MAX = 8;
+const MIN_COUNT = 2;
+const TARGET_MIN = 3;
+const TARGET_MAX = 5;
 const PRIMARY_THRESHOLD = 6.0;
 const RELAXED_THRESHOLD = 5.0;
 const NOISE_THRESHOLD = 4.0;
