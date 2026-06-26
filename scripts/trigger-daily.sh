@@ -6,6 +6,13 @@
 
 set -euo pipefail
 
+# --dry-run を渡すと daily.yml の inputs.dry_run=true で発火。Slack 投稿せず
+# stdout のみ。crontab は引数なし = LIVE。手動テスト時のみ --dry-run を使う。
+DRY_RUN_INPUT="false"
+if [ "${1:-}" = "--dry-run" ]; then
+  DRY_RUN_INPUT="true"
+fi
+
 ENV_FILE="/var/www/_shared/apps/mb-cosme-news-trigger.env"
 if [ ! -f "$ENV_FILE" ]; then
   echo "[trigger-daily] ERROR: $ENV_FILE が見つかりません" >&2
@@ -30,11 +37,11 @@ HTTP_CODE=$(curl -sS -o /tmp/trigger-daily-resp.json -w "%{http_code}" \
   -H "Authorization: Bearer $GITHUB_PAT" \
   -H "X-GitHub-Api-Version: 2022-11-28" \
   "https://api.github.com/repos/$REPO/actions/workflows/$WORKFLOW/dispatches" \
-  -d '{"ref":"'"$BRANCH"'"}')
+  -d '{"ref":"'"$BRANCH"'","inputs":{"dry_run":"'"$DRY_RUN_INPUT"'"}}')
 
 NOW=$(date -u +%Y-%m-%dT%H:%MZ)
 if [ "$HTTP_CODE" = "204" ]; then
-  echo "[trigger-daily] $NOW dispatched ($HTTP_CODE)"
+  echo "[trigger-daily] $NOW dispatched dry_run=$DRY_RUN_INPUT ($HTTP_CODE)"
 else
   echo "[trigger-daily] $NOW FAILED http=$HTTP_CODE body=$(cat /tmp/trigger-daily-resp.json)" >&2
   exit 1

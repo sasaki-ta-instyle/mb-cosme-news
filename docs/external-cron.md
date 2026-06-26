@@ -52,13 +52,22 @@ ssh conoha-deploy 'ls -la /var/www/_shared/apps/mb-cosme-news-trigger.env && gre
 
 ### 3. トリガースクリプトを手動テスト
 
+**初回は必ず `--dry-run` で試す**（Slack に投稿せず動作確認）:
+
 ```bash
-ssh conoha-deploy 'bash /var/www/_workers/mb-cosme-news-bot/scripts/trigger-daily.sh'
-# → [trigger-daily] YYYY-MM-DDTHH:MMZ dispatched (204)
+ssh conoha-deploy 'bash /var/www/_workers/mb-cosme-news-bot/scripts/trigger-daily.sh --dry-run'
+# → [trigger-daily] YYYY-MM-DDTHH:MMZ dispatched dry_run=true (204)
 
 # 1〜2 分後に GitHub Actions 側で run が起動したか確認（ローカルから）
 gh run list --workflow=daily.yml --limit 3 --json event,createdAt --repo sasaki-ta-instyle/mb-cosme-news
 # → event=workflow_dispatch の最新行があれば成功
+```
+
+LIVE 発火（Slack 投稿）でテストしたい場合は引数なし:
+
+```bash
+ssh conoha-deploy 'bash /var/www/_workers/mb-cosme-news-bot/scripts/trigger-daily.sh'
+# → [trigger-daily] ... dispatched dry_run=false (204)
 ```
 
 ### 4. crontab に登録
