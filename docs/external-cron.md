@@ -15,7 +15,7 @@ schedule trigger を廃止し、**ConoHa の crontab から `scripts/trigger-dai
 
 ```
 ConoHa crontab (deploy user, TZ=Asia/Tokyo)
-  └─ 毎平日 09:30 JST で trigger-daily.sh を実行
+  └─ 毎平日 09:50 JST で trigger-daily.sh を実行
       └─ curl で POST /repos/.../actions/workflows/daily.yml/dispatches
           └─ GitHub Actions の daily.yml が即時発火（数秒以内）
               └─ pnpm start → Slack 投稿 → state commit-back
@@ -81,12 +81,12 @@ ssh conoha-deploy 'crontab -e'
 以下を追記（既存の cron 行はそのまま）:
 
 ```cron
-# mb-cosme-news: 毎平日 JST 09:30 に GitHub Actions の daily.yml を発火（TZ=Asia/Tokyo なので JST 直書き）
+# mb-cosme-news: 毎平日 JST 09:50 に GitHub Actions の daily.yml を発火（TZ=Asia/Tokyo なので JST 直書き）
 # 祝日 / 年末年始は src/calendar.ts の shouldSkipToday() で配信前にスキップ
-30 9 * * 1-5 bash /var/www/_workers/mb-cosme-news-bot/scripts/trigger-daily.sh >> /var/www/_workers/mb-cosme-news-bot/logs/trigger-daily.log 2>&1
+50 9 * * 1-5 bash /var/www/_workers/mb-cosme-news-bot/scripts/trigger-daily.sh >> /var/www/_workers/mb-cosme-news-bot/logs/trigger-daily.log 2>&1
 ```
 
-`30 9 * * 1-5` = JST 09:30 月〜金（ConoHa TZ が Asia/Tokyo のため UTC 換算は不要）。
+`50 9 * * 1-5` = JST 09:50 月〜金（ConoHa TZ が Asia/Tokyo のため UTC 換算は不要）。
 
 ## 注意
 

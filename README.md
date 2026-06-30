@@ -4,7 +4,7 @@
 
 ## 概要
 
-- **配信**: 平日 09:30 JST（ConoHa crontab → GitHub workflow_dispatch。土日 / 日本の祝日 / 年末年始 12/29〜1/3 は自動スキップ）
+- **配信**: 平日 09:50 JST（ConoHa crontab → GitHub workflow_dispatch。土日 / 日本の祝日 / 年末年始 12/29〜1/3 は自動スキップ）
 - **件数**: 1 投稿に 5〜8 件のダイジェスト
 - **ソース**: WWD JAPAN / FASHIONSNAP / PR TIMES（ビューティー）/ @cosme
 - **選別**: キーワード一次フィルタ → Claude Haiku 4.5 で関連度判定 + 1〜2 行要約 + メビウス向け着眼点
