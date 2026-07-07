@@ -5,6 +5,7 @@ import { fetchPrtimes } from "./prtimes.ts";
 import { fetchCosme } from "./cosme.ts";
 import { fetchBiteki } from "./biteki.ts";
 import { fetchVoce } from "./voce.ts";
+import { fetchSyogyo } from "./syogyo.ts";
 
 const FETCHERS: Record<string, () => Promise<RawArticle[]>> = {
   wwd: fetchWwd,
@@ -13,6 +14,7 @@ const FETCHERS: Record<string, () => Promise<RawArticle[]>> = {
   cosme: fetchCosme,
   biteki: fetchBiteki,
   voce: fetchVoce,
+  syogyo: fetchSyogyo,
 };
 
 export async function fetchAll(sourceIds: string[]): Promise<{

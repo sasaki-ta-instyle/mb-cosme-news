@@ -58,6 +58,13 @@ export const SOURCES: SourceConfig[] = [
     url: "https://i-voce.jp/sitemaps/sitemap_article.xml",
     enabled: true,
   },
+  {
+    id: "syogyo",
+    name: "商業界",
+    kind: "scrape",
+    url: "https://www.syogyo.jp/news/news/cat19",
+    enabled: true,
+  },
 ];
 
 // WWD JAPAN など Cloudflare 系で素の bot UA を弾くサイトがあるため、
