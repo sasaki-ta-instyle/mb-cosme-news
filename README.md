@@ -6,7 +6,7 @@
 
 - **配信**: 平日 09:50 JST（ConoHa crontab → GitHub workflow_dispatch。土日 / 日本の祝日 / 年末年始 12/29〜1/3 は自動スキップ）
 - **件数**: 1 投稿に 5〜8 件のダイジェスト
-- **ソース**: WWD JAPAN / FASHIONSNAP / PR TIMES（ビューティー）/ @cosme / 美的 / VOCE / 商業界（通販化粧品メーカー cat19）
+- **ソース**: WWD JAPAN / FASHIONSNAP / PR TIMES（ビューティー）/ @cosme for BUSINESS（column + case + info）/ 美的 / VOCE / 商業界（通販化粧品メーカー cat19）
 - **選別**: キーワード一次フィルタ → Claude Haiku 4.5 で関連度判定 + 1〜2 行要約 + メビウス向け着眼点
 - **重複排除**: 既配信 URL を `state/seen.json` で管理（commit-back）。同一プレスリリースの複数メディア横展開はタイトル類似度で 1 件に統合
 

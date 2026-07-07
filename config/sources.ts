@@ -34,12 +34,12 @@ export const SOURCES: SourceConfig[] = [
     id: "cosme",
     name: "@cosme",
     kind: "scrape",
-    url: "https://www.cosme.net/news/",
-    // 2026-06-26: cosme.net/news/ がリストページ機能を失い、記事カード型リンクが
-    // HTML に残っていない (header/footer/category top のみ)。Shift_JIS 対応後も
-    // breakdown=1 で実質 dead source。LLM トークン無駄遣いになるため一旦 disable。
-    // 別途「@cosme のどの URL 群を見るのが正解か」を調査して再有効化する。
-    enabled: false,
+    // 2026-07-07: 旧 cosme.net/news/ 廃止に伴い、@cosme for BUSINESS の
+    // /column /case /info の 3 カテゴリを統合する形で再有効化。
+    // sources.ts で url は代表 URL を持たせるだけで、実際の scrape 対象は
+    // src/sources/cosme.ts の CATEGORY_URLS に定義。
+    url: "https://business.cosme.net/column?hsLang=ja-jp",
+    enabled: true,
   },
   {
     id: "biteki",
