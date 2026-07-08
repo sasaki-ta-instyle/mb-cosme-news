@@ -47,8 +47,10 @@ export const SOURCES: SourceConfig[] = [
     // IDN ドメイン「美的.com」は Slack が自動でリンク化して host を Punycode
     // (xn--hxyt6q.com) に変換してしまうため。
     name: "美的",
+    // 2026-07-08: 旧 /feed（RSS）が 404 になったため WordPress REST API に切替。
+    // 実装は src/sources/biteki.ts、URL は下の url ではなく実装内 API_URL を参照。
     kind: "rss",
-    url: "https://www.biteki.com/feed",
+    url: "https://www.biteki.com/wp-json/wp/v2/posts",
     enabled: true,
   },
   {
