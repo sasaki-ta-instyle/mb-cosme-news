@@ -62,6 +62,20 @@ docs/
   RESUMING.md         # 中断・再開・別 Mac 引き継ぎ手順
 ```
 
+## Bot custom tools（応答モード）
+
+Slack「@シロコ」の質問応答は Claude Sonnet + 以下 4 つの custom tool + built-in web_search で動く（`src/bot/tools.ts`）。
+
+| ツール | 用途 | 呼び先 |
+|---|---|---|
+| `read_trends_log` | 朝のダイジェスト由来のトレンド事例ログ（ローカル `state/trends/`） | ローカル file |
+| `shiroco_search` | 業界書 27 冊 + JAPAL 通知の意味検索 | shiroco v2 `/api/search` |
+| `search_japal_notices` | JAPAL 通知に絞った校閲・校正専用検索 | shiroco v2 `/api/japal/search` |
+| `shiroco_compare` | **比較検証モード**: 業界平均 × メビウス実数（BQ）× GDrive 実績シートの突合 | shiroco v2 `/api/compare` |
+
+`shiroco_compare` は業界平均だけでは足りず **メビウス実データとの突合が必要な質問**（「LTV は業界と比べて高い？」等）で発火。応答は 4 セクション固定（業界平均 / メビウス実数 / 差分 / 引き出せる問い）。BQ が未設定 or 未認証の場合は自動で「業界平均のみモード」に落ち、notes に理由を出す。
+
 ## 設計の根拠
 
 `~/.claude/plans/slackbot-wwd-fashionsnap-prtimes-velvet-peach.md` に詳細プランを残してある。
+比較検証モード追加は `~/.claude/plans/shiroco-sorted-bentley.md`（Phase C）。
