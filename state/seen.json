@@ -946,5 +946,35 @@
     "sources": [
       "prtimes"
     ]
+  },
+  "e28f26ac4d36064c": {
+    "firstSeenAt": "2026-07-28T00:53:02.288Z",
+    "sources": [
+      "wwd"
+    ]
+  },
+  "04b1f4a9e611924c": {
+    "firstSeenAt": "2026-07-28T00:53:02.288Z",
+    "sources": [
+      "syogyo"
+    ]
+  },
+  "d7d225e57a974463": {
+    "firstSeenAt": "2026-07-28T00:53:02.288Z",
+    "sources": [
+      "wwd"
+    ]
+  },
+  "f24d35aeb23848db": {
+    "firstSeenAt": "2026-07-28T00:53:02.288Z",
+    "sources": [
+      "wwd"
+    ]
+  },
+  "53e78c055a1905e6": {
+    "firstSeenAt": "2026-07-28T00:53:02.288Z",
+    "sources": [
+      "prtimes"
+    ]
   }
 }
