@@ -1246,5 +1246,35 @@
     "sources": [
       "syogyo"
     ]
+  },
+  "547c8db22984b830": {
+    "firstSeenAt": "2026-08-12T00:52:25.977Z",
+    "sources": [
+      "wwd"
+    ]
+  },
+  "74c34f80cd5368fd": {
+    "firstSeenAt": "2026-08-12T00:52:25.977Z",
+    "sources": [
+      "prtimes"
+    ]
+  },
+  "53458c5cadf61a3e": {
+    "firstSeenAt": "2026-08-12T00:52:25.977Z",
+    "sources": [
+      "wwd"
+    ]
+  },
+  "0768434ce20890f6": {
+    "firstSeenAt": "2026-08-12T00:52:25.977Z",
+    "sources": [
+      "fashionsnap"
+    ]
+  },
+  "8ee1f039103ab77b": {
+    "firstSeenAt": "2026-08-12T00:52:25.977Z",
+    "sources": [
+      "fashionsnap"
+    ]
   }
 }
