@@ -1366,5 +1366,35 @@
     "sources": [
       "fashionsnap"
     ]
+  },
+  "b8cfab7696219ace": {
+    "firstSeenAt": "2026-08-18T00:53:00.912Z",
+    "sources": [
+      "fashionsnap"
+    ]
+  },
+  "f897db02ffbf1174": {
+    "firstSeenAt": "2026-08-18T00:53:00.912Z",
+    "sources": [
+      "prtimes"
+    ]
+  },
+  "b8665d869e5ef979": {
+    "firstSeenAt": "2026-08-18T00:53:00.912Z",
+    "sources": [
+      "prtimes"
+    ]
+  },
+  "20fb41e5f18b8e3a": {
+    "firstSeenAt": "2026-08-18T00:53:00.912Z",
+    "sources": [
+      "syogyo"
+    ]
+  },
+  "ddf743feef2c5e92": {
+    "firstSeenAt": "2026-08-18T00:53:00.912Z",
+    "sources": [
+      "fashionsnap"
+    ]
   }
 }
