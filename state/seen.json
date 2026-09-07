@@ -1786,5 +1786,35 @@
     "sources": [
       "prtimes"
     ]
+  },
+  "841b9649a6ae8046": {
+    "firstSeenAt": "2026-09-07T00:51:48.746Z",
+    "sources": [
+      "wwd"
+    ]
+  },
+  "34a05f72a890599a": {
+    "firstSeenAt": "2026-09-07T00:51:48.746Z",
+    "sources": [
+      "prtimes"
+    ]
+  },
+  "1aea130e2d99f770": {
+    "firstSeenAt": "2026-09-07T00:51:48.746Z",
+    "sources": [
+      "syogyo"
+    ]
+  },
+  "eeb183a398daf5ec": {
+    "firstSeenAt": "2026-09-07T00:51:48.746Z",
+    "sources": [
+      "syogyo"
+    ]
+  },
+  "5e6d37fe6d7aad53": {
+    "firstSeenAt": "2026-09-07T00:51:48.746Z",
+    "sources": [
+      "prtimes"
+    ]
   }
 }
