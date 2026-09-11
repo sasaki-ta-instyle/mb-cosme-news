@@ -1906,5 +1906,35 @@
     "sources": [
       "voce"
     ]
+  },
+  "0f9394d14bd4a29d": {
+    "firstSeenAt": "2026-09-11T00:53:29.245Z",
+    "sources": [
+      "fashionsnap"
+    ]
+  },
+  "fd4c059616851d80": {
+    "firstSeenAt": "2026-09-11T00:53:29.245Z",
+    "sources": [
+      "prtimes"
+    ]
+  },
+  "6c21a6ecc03a5a63": {
+    "firstSeenAt": "2026-09-11T00:53:29.245Z",
+    "sources": [
+      "biteki"
+    ]
+  },
+  "e28ee7160e6ca2d3": {
+    "firstSeenAt": "2026-09-11T00:53:29.245Z",
+    "sources": [
+      "syogyo"
+    ]
+  },
+  "dca6ff079fa87a5b": {
+    "firstSeenAt": "2026-09-11T00:53:29.245Z",
+    "sources": [
+      "prtimes"
+    ]
   }
 }
