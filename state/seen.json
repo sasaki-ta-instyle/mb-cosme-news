@@ -1768,5 +1768,35 @@
     "sources": [
       "syogyo"
     ]
+  },
+  "ff25ab61a73ef30d": {
+    "firstSeenAt": "2026-09-29T00:53:03.950Z",
+    "sources": [
+      "wwd"
+    ]
+  },
+  "834c6d528d49b1dc": {
+    "firstSeenAt": "2026-09-29T00:53:03.950Z",
+    "sources": [
+      "prtimes"
+    ]
+  },
+  "5655c6cc829c3a20": {
+    "firstSeenAt": "2026-09-29T00:53:03.950Z",
+    "sources": [
+      "voce"
+    ]
+  },
+  "3dc8758fd5d1f151": {
+    "firstSeenAt": "2026-09-29T00:53:03.950Z",
+    "sources": [
+      "wwd"
+    ]
+  },
+  "8847e311b63f3059": {
+    "firstSeenAt": "2026-09-29T00:53:03.950Z",
+    "sources": [
+      "wwd"
+    ]
   }
 }
