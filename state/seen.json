@@ -1,34 +1,4 @@
 {
-  "abe67050cd2aa90c": {
-    "firstSeenAt": "2026-07-09T00:52:53.670Z",
-    "sources": [
-      "prtimes"
-    ]
-  },
-  "65caae7036fa2b1e": {
-    "firstSeenAt": "2026-07-09T00:52:53.670Z",
-    "sources": [
-      "prtimes"
-    ]
-  },
-  "90cb143423ee6b1f": {
-    "firstSeenAt": "2026-07-09T00:52:53.670Z",
-    "sources": [
-      "syogyo"
-    ]
-  },
-  "3e4db889648263bb": {
-    "firstSeenAt": "2026-07-09T00:52:53.670Z",
-    "sources": [
-      "syogyo"
-    ]
-  },
-  "5913f1569b951f45": {
-    "firstSeenAt": "2026-07-09T00:52:53.670Z",
-    "sources": [
-      "prtimes"
-    ]
-  },
   "f9f0f72b24e1291b": {
     "firstSeenAt": "2026-07-10T00:53:00.871Z",
     "sources": [
@@ -1797,6 +1767,36 @@
     "firstSeenAt": "2026-10-07T00:53:04.814Z",
     "sources": [
       "biteki"
+    ]
+  },
+  "1676a4dc5ff5ec3b": {
+    "firstSeenAt": "2026-10-08T00:53:26.060Z",
+    "sources": [
+      "prtimes"
+    ]
+  },
+  "822176fb3368cb57": {
+    "firstSeenAt": "2026-10-08T00:53:26.060Z",
+    "sources": [
+      "prtimes"
+    ]
+  },
+  "d59756198a4db69a": {
+    "firstSeenAt": "2026-10-08T00:53:26.060Z",
+    "sources": [
+      "wwd"
+    ]
+  },
+  "367e699f1ad769c2": {
+    "firstSeenAt": "2026-10-08T00:53:26.060Z",
+    "sources": [
+      "wwd"
+    ]
+  },
+  "d12e67a255393b41": {
+    "firstSeenAt": "2026-10-08T00:53:26.060Z",
+    "sources": [
+      "wwd"
     ]
   }
 }
