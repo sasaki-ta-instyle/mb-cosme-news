@@ -1,64 +1,4 @@
 {
-  "0febb0e819cee544": {
-    "firstSeenAt": "2026-07-13T00:51:51.238Z",
-    "sources": [
-      "syogyo"
-    ]
-  },
-  "8a7ca4e1515822c9": {
-    "firstSeenAt": "2026-07-13T00:51:51.238Z",
-    "sources": [
-      "prtimes"
-    ]
-  },
-  "03df2eef89062062": {
-    "firstSeenAt": "2026-07-13T00:51:51.238Z",
-    "sources": [
-      "syogyo"
-    ]
-  },
-  "7edd1cb6cebc4b17": {
-    "firstSeenAt": "2026-07-13T00:51:51.238Z",
-    "sources": [
-      "syogyo"
-    ]
-  },
-  "d40117208fbbed95": {
-    "firstSeenAt": "2026-07-13T00:51:51.238Z",
-    "sources": [
-      "prtimes"
-    ]
-  },
-  "b5521897db32c177": {
-    "firstSeenAt": "2026-07-14T00:52:30.791Z",
-    "sources": [
-      "wwd"
-    ]
-  },
-  "e5d30ad2898319e0": {
-    "firstSeenAt": "2026-07-14T00:52:30.791Z",
-    "sources": [
-      "prtimes"
-    ]
-  },
-  "dbfa84b990ec7a4a": {
-    "firstSeenAt": "2026-07-14T00:52:30.791Z",
-    "sources": [
-      "syogyo"
-    ]
-  },
-  "f052f32c76aaf18f": {
-    "firstSeenAt": "2026-07-14T00:52:30.791Z",
-    "sources": [
-      "fashionsnap"
-    ]
-  },
-  "384ce71ffb9ee547": {
-    "firstSeenAt": "2026-07-14T00:52:30.791Z",
-    "sources": [
-      "syogyo"
-    ]
-  },
   "ab4321b2326955f7": {
     "firstSeenAt": "2026-07-15T00:52:54.487Z",
     "sources": [
@@ -1795,6 +1735,36 @@
   },
   "b926d41c16bc4de1": {
     "firstSeenAt": "2026-10-09T00:53:03.146Z",
+    "sources": [
+      "fashionsnap"
+    ]
+  },
+  "57f2d1a8f28e5ebe": {
+    "firstSeenAt": "2026-10-13T00:52:11.519Z",
+    "sources": [
+      "prtimes"
+    ]
+  },
+  "95fd455b9262304c": {
+    "firstSeenAt": "2026-10-13T00:52:11.519Z",
+    "sources": [
+      "prtimes"
+    ]
+  },
+  "c5051bcd61eb89f8": {
+    "firstSeenAt": "2026-10-13T00:52:11.519Z",
+    "sources": [
+      "prtimes"
+    ]
+  },
+  "55772959d1338c9a": {
+    "firstSeenAt": "2026-10-13T00:52:11.519Z",
+    "sources": [
+      "syogyo"
+    ]
+  },
+  "e408566af282425e": {
+    "firstSeenAt": "2026-10-13T00:52:11.519Z",
     "sources": [
       "fashionsnap"
     ]
