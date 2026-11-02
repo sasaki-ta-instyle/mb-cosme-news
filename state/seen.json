@@ -1,34 +1,4 @@
 {
-  "66b3ef1d91ba8854": {
-    "firstSeenAt": "2026-08-03T00:51:50.931Z",
-    "sources": [
-      "fashionsnap"
-    ]
-  },
-  "d6744274be009052": {
-    "firstSeenAt": "2026-08-03T00:51:50.931Z",
-    "sources": [
-      "biteki"
-    ]
-  },
-  "ec69d5407e6c5384": {
-    "firstSeenAt": "2026-08-03T00:51:50.931Z",
-    "sources": [
-      "biteki"
-    ]
-  },
-  "7c9dc5600f50b0ef": {
-    "firstSeenAt": "2026-08-03T00:51:50.931Z",
-    "sources": [
-      "prtimes"
-    ]
-  },
-  "0af2ef946bd2dec3": {
-    "firstSeenAt": "2026-08-03T00:51:50.931Z",
-    "sources": [
-      "prtimes"
-    ]
-  },
   "c475f13957e78678": {
     "firstSeenAt": "2026-08-04T00:52:49.816Z",
     "sources": [
@@ -1797,6 +1767,36 @@
     "firstSeenAt": "2026-10-30T00:52:59.889Z",
     "sources": [
       "prtimes"
+    ]
+  },
+  "5a4963ef0bc11750": {
+    "firstSeenAt": "2026-11-02T00:52:17.225Z",
+    "sources": [
+      "biteki"
+    ]
+  },
+  "7da9da21ad251822": {
+    "firstSeenAt": "2026-11-02T00:52:17.225Z",
+    "sources": [
+      "prtimes"
+    ]
+  },
+  "fec4fa3b2e3ff65b": {
+    "firstSeenAt": "2026-11-02T00:52:17.225Z",
+    "sources": [
+      "biteki"
+    ]
+  },
+  "58b8fbe0e6ba22e8": {
+    "firstSeenAt": "2026-11-02T00:52:17.225Z",
+    "sources": [
+      "syogyo"
+    ]
+  },
+  "504b8571c23c17c1": {
+    "firstSeenAt": "2026-11-02T00:52:17.225Z",
+    "sources": [
+      "biteki"
     ]
   }
 }
